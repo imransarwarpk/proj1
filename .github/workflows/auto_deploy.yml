@@ -25,10 +25,13 @@ jobs:
       - uses: Borales/actions-yarn@v2.1.0
         with:
           cmd: install
+          
       - name: build project
         run : yarn build
+        
       - name: install surge
-        run: npm install - g surge
+        run : npm install -g surge
+        
       - name: publis on surge
         run :   surge ./build http://bootcamp2020_reactapp.surge.sh --token ${{ secrets.SURGETOKEN }}
         
