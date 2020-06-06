@@ -1,0 +1,33 @@
+# This is a basic workflow to help you get started with Actions
+
+name: CI
+
+# Controls when the action will run. Triggers the workflow on push or pull request
+# events but only for the master branch
+on:
+  push:
+    branches: [ master ]
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # This workflow contains a single job called "build"
+  build:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+
+    name: Auto Deploy
+    steps:
+      - uses: actions/checkout@v2
+        name: install node
+      - uses: actions/setup-node@v2-beta
+        with:
+          node-version: 12
+      - name: install yarn
+        run: npm install -g yarn
+      - name: build project
+        run : yarn build
+      - name: publis on surge
+        run :   surge ./build http://bootcamp2020_reactapp.surge.sh --token ${{ secrets.SURGETOKEN }}
+        
+          
+        
