@@ -24,8 +24,7 @@ jobs:
           node-version: 12
       - uses: Borales/actions-yarn@v2.1.0
         with:
-        # Yarn command
-        cmd: install # npm install/ yarn install
+          cmd: install
       - name: build project
         run : yarn build
       - name: publis on surge
